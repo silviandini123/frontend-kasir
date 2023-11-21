@@ -14,6 +14,24 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <li>
           <Link href="/category">Category</Link>
         </li>
+        <li>
+          <Link href="/jenis">Jenis</Link>
+        </li>
+        <li>
+          <Link href="/menu">Menu</Link>
+        </li>
+        <li>
+          <Link href="/pelanggan">Pelanggan</Link>
+        </li>
+        <li>
+          <Link href="/stok">Stok</Link>
+        </li>
+        <li>
+          <Link href="/meja">Meja</Link>
+        </li>
+        <li className="mr-5">
+          <Link href="/pemesanan">Pemesanan</Link>
+        </li>
       </ul>
       {children}
     </div>

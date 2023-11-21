@@ -1,6 +1,10 @@
 export const metadata = {
   title: "Category",
 };
+
+import AddCategory from "./addCategory";
+import DeleteCategory from "./deleteCategory";
+import UpdateCategory from "./updateCategory";
 import axios from "axios";
 import Link from "next/link";
 import React from "react";
@@ -16,16 +20,39 @@ const getCategory = async () => {
 const CategoryList = async () => {
   const category: Category[] = await getCategory();
   return (
-    <div>
-      Category List
-      <ul>
-        {category.map((category, index) => (
-          <Link href={"/category/${category.id}"} key={category.id}>
-            <li>{category.name}</li>
-          </Link>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="py-10 px-10">
+        <div className="py-2"></div>
+        Category List
+        <div className="py-2">
+          <AddCategory />
+        </div>
+        <table className="table table-zebra">
+          <thead>
+            <tr className="bg-base-200">
+              <th>No.</th>
+              <th> Nama Kategori</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {category &&
+              category.map((category, index) => (
+                <tr key={category.id}>
+                  <td>{index + 1}</td>
+                  <td>{category.name}</td>
+                  <td className="flex">
+                    <div className="mr-1">
+                      <UpdateCategory {...category} />
+                    </div>
+                    <DeleteCategory {...category} />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 export default CategoryList;
